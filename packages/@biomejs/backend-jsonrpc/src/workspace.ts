@@ -979,6 +979,10 @@ export interface Nursery {
 	 */
 	noConsole?: RuleFixConfiguration_for_Null;
 	/**
+	 * Disallow selectors of lower specificity from coming after overriding selectors of higher specificity.
+	 */
+	noDescendingSpecificity?: RuleConfiguration_for_Null;
+	/**
 	 * Disallow using a callback in asynchronous tests and hooks.
 	 */
 	noDoneCallback?: RuleConfiguration_for_Null;
@@ -2325,6 +2329,7 @@ export type Category =
 	| "lint/nursery/colorNoInvalidHex"
 	| "lint/nursery/noColorInvalidHex"
 	| "lint/nursery/noConsole"
+	| "lint/nursery/noDescendingSpecificity"
 	| "lint/nursery/noDoneCallback"
 	| "lint/nursery/noDuplicateAtImportRules"
 	| "lint/nursery/noDuplicateElseIf"

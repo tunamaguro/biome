@@ -2,6 +2,7 @@
 
 use crate::lint;
 
+pub type NoDescendingSpecificity = < lint :: nursery :: no_descending_specificity :: NoDescendingSpecificity as biome_analyze :: Rule > :: Options ;
 pub type NoDuplicateAtImportRules = < lint :: nursery :: no_duplicate_at_import_rules :: NoDuplicateAtImportRules as biome_analyze :: Rule > :: Options ;
 pub type NoDuplicateFontNames =
     <lint::nursery::no_duplicate_font_names::NoDuplicateFontNames as biome_analyze::Rule>::Options;

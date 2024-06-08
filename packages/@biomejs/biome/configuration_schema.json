@@ -1671,6 +1671,13 @@
 						{ "type": "null" }
 					]
 				},
+				"noDescendingSpecificity": {
+					"description": "Disallow selectors of lower specificity from coming after overriding selectors of higher specificity.",
+					"anyOf": [
+						{ "$ref": "#/definitions/RuleConfiguration" },
+						{ "type": "null" }
+					]
+				},
 				"noDoneCallback": {
 					"description": "Disallow using a callback in asynchronous tests and hooks.",
 					"anyOf": [
