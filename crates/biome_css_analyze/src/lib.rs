@@ -146,7 +146,7 @@ mod tests {
 
     use crate::{analyze, AnalysisFilter, ControlFlow};
 
-    #[ignore]
+    // #[ignore]
     #[test]
     fn quick_test() {
         fn markup_to_string(markup: Markup) -> String {
@@ -158,12 +158,36 @@ mod tests {
             String::from_utf8(buffer).unwrap()
         }
 
-        const SOURCE: &str = r#"@font-face { font-family: Gentium; }"#;
+        const SOURCE: &str = r#"
+        #aaa{}
+        .aaa{}
+        a:not(a > img) { }
+        
+        "#;
+        r#"
+        :not(a){}
+        :not(:has(:not(img))) { }
+        :is(p, #fakeId){}
+        input:not([type='submit']) { }
+        a:hover{}
+        div :nth-child(2 of .widget) { }
+        a[data] {}
+        :root #myApp .some_class:hover {}
+        .some_class[href^="https://"][href$=".org"]{}
+        .component2 a {}
+        .some_class {}
+        #some_id {}
+        :root {}
+        a {}
+        #myApp [id="myElement"] {}
+        a[href^="https://"][href$=".org"]{}
+        .component1 a:hover {}
+        "#;
 
         let parsed = parse_css(SOURCE, CssParserOptions::default());
 
         let mut error_ranges: Vec<TextRange> = Vec::new();
-        let rule_filter = RuleFilter::Rule("nursery", "noMissingGenericFamilyKeyword");
+        let rule_filter = RuleFilter::Rule("nursery", "noDescendingSpecificity");
         let options = AnalyzerOptions::default();
         analyze(
             &parsed.tree(),
